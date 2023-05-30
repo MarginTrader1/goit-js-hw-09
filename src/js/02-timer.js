@@ -7,6 +7,7 @@ const daysField = document.querySelector('span[data-days]');
 const hoursField = document.querySelector('span[data-hours]');
 const minutesField = document.querySelector('span[data-minutes]');
 const secondsField = document.querySelector('span[data-seconds]');
+let timerId = null;
 
 const options = {
     enableTime: true,
@@ -29,7 +30,7 @@ btnStart.addEventListener(`click`, startHandleClick);
 
 function startHandleClick(){
 
-  setInterval(() => makeTimer(), 1000);
+  timerId = setInterval(() => makeTimer(), 1000);
 
   function makeTimer() {
     // текущая дата
@@ -41,8 +42,13 @@ function startHandleClick(){
     // разница между текущей и введеной датой
     const diffDate = inputDate - currentDate; 
     
-    // добавляем в код HTML
-    addDateToHtml (convertMs(diffDate));
+    if (diffDate > 0) { 
+      // добавляем в код HTML
+      addDateToHtml (convertMs(diffDate));
+    } else {
+      // cнимаем интервал
+      clearInterval(timerId);
+    }
   }
 }
 
