@@ -31,8 +31,6 @@ btnStart.addEventListener(`click`, startHandleClick);
 
 function startHandleClick(){
 
-  console.log(dateInput.value);
-
   timerId = setInterval(() => makeTimer(), 1000);
 
   function makeTimer() {
