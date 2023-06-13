@@ -30,8 +30,6 @@ function startHandleClick () {
 function stopHandleClick () {
     clearInterval(timerId);
     startBtn.removeAttribute('disabled');
-    bodyElem.style.backgroundColor = null;
-
 };
 
 
