@@ -31,6 +31,8 @@ btnStart.addEventListener(`click`, startHandleClick);
 
 function startHandleClick(){
 
+  console.log(dateInput.value);
+
   timerId = setInterval(() => makeTimer(), 1000);
 
   function makeTimer() {
@@ -85,6 +87,12 @@ function addDateToHtml ({ days, hours, minutes, seconds }) {
 function addLeadingZero(number){
   return String(number).padStart(2, 0);
 };
+
+
+
+
+
+
 
 
 
