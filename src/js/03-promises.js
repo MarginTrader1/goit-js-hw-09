@@ -1,15 +1,22 @@
 import Notiflix from 'notiflix';
 
-const formElem = document.querySelector('.form');
+const formElem = document.querySelector('form');
 
 formElem.addEventListener(`submit`, clickBtnCreatePromise);
 
 function clickBtnCreatePromise(event) {
   event.preventDefault();
 
-  const delay = Number(event.target.elements.delay.value);
-  const step = Number(event.target.elements.step.value);
-  const amount = Number(event.target.elements.amount.value);
+  /* получаем массив инпутов */
+  const arrayElements = document.getElementsByTagName('input');
+
+  /* деструктуризация массива */
+  const [delayElem, stepElem, amountElem] = arrayElements;
+
+  // присваиваем значение переменным
+  const delay = Number(delayElem.value);
+  const step = Number(stepElem.value);
+  const amount = Number(amountElem.value);
 
   // функции для успешного выполнения промиса
   function onSuccess({ position, delay }) {
@@ -25,24 +32,23 @@ function clickBtnCreatePromise(event) {
 
   // функция создания промиса
   function createPromise(position, delay) {
-    const shouldResolve = Math.random() > 0.3;
+    const shouldResolve = Math.random() > 0.5;
 
     console.log(`Creating promise ${position} with delay ${delay}ms`);
 
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (shouldResolve) {
-          resolve({ position, delay });
-        } else {
-          reject({ position, delay });
+          return resolve({ position, delay });
         }
+        return reject({ position, delay });
       }, delay);
     });
   }
 
   for (let i = 0; i < amount; i++) {
     createPromise(i + 1, delay + step * i)
-      .then(({ position, delay }) => onFailure({ position, delay }))
+      .then(({ position, delay }) => onSuccess({ position, delay }))
       .catch(({ position, delay }) => onFailure({ position, delay }));
   }
 }
