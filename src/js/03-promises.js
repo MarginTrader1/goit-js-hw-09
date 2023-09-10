@@ -7,11 +7,9 @@ formElem.addEventListener(`submit`, clickBtnCreatePromise);
 function clickBtnCreatePromise(event) {
   event.preventDefault();
 
-  /* получаем массив инпутов */
-  const arrayElements = document.getElementsByTagName('input');
-
-  /* деструктуризация массива */
-  const [delayElem, stepElem, amountElem] = arrayElements;
+  /* получаем массив инпутов и сразу делаем деструктуризацию массива */
+  const [delayElem, stepElem, amountElem] =
+    document.getElementsByTagName('input');
 
   // присваиваем значение переменным
   const delay = Number(delayElem.value);
