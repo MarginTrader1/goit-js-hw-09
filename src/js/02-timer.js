@@ -36,8 +36,12 @@ function startHandleClick() {
     // текущая дата
     const currentDate = new Date();
 
+    console.log(currentDate);
+
     // введеная дата
     const inputDate = Date.parse(dateInput.value);
+
+    console.log(inputDate);
 
     // разница между текущей и введеной датой
     const diffDate = inputDate - currentDate;
